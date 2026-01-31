@@ -58,6 +58,8 @@ struct AlertItem: Identifiable {
 
 @MainActor
 final class AppViewModel: ObservableObject {
+    static let shared = AppViewModel()
+
     @Published var status: AppStatus = .idle
     @Published var statusDetail: String = ""
     @Published var apiKey: String = ""
@@ -325,8 +327,9 @@ struct AudioDeviceManager {
         var dataSize = UInt32(MemoryLayout<CFString>.size)
         var name: CFString = "" as CFString
         let status = AudioObjectGetPropertyData(deviceID, &address, 0, nil, &dataSize, &name)
-        if status == noErr, !name.isEmpty {
-            return name as String
+        if status == noErr {
+            let value = name as String
+            return value.isEmpty ? nil : value
         }
         return nil
     }
@@ -340,8 +343,9 @@ struct AudioDeviceManager {
         var dataSize = UInt32(MemoryLayout<CFString>.size)
         var uid: CFString = "" as CFString
         let status = AudioObjectGetPropertyData(deviceID, &address, 0, nil, &dataSize, &uid)
-        if status == noErr, !uid.isEmpty {
-            return uid as String
+        if status == noErr {
+            let value = uid as String
+            return value.isEmpty ? nil : value
         }
         return nil
     }

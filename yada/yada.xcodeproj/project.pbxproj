@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		6AD3DACE2F2DF169006DBCBB /* yadaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3DACD2F2DF169006DBCBB /* yadaApp.swift */; };
 		6AD3DAD02F2DF169006DBCBB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3DACF2F2DF169006DBCBB /* ContentView.swift */; };
-		761E08D7E5D042D2901EF209 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273DC4E71FC24415BEB401E5 /* AppCore.swift */; };
 		6AD3DAD22F2DF16A006DBCBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AD3DAD12F2DF16A006DBCBB /* Assets.xcassets */; };
 		6AD3DAD52F2DF16A006DBCBB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AD3DAD42F2DF16A006DBCBB /* Preview Assets.xcassets */; };
 		6AD3DAE02F2DF16A006DBCBB /* yadaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3DADF2F2DF16A006DBCBB /* yadaTests.swift */; };
 		6AD3DAEA2F2DF16A006DBCBB /* yadaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3DAE92F2DF16A006DBCBB /* yadaUITests.swift */; };
 		6AD3DAEC2F2DF16A006DBCBB /* yadaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3DAEB2F2DF16A006DBCBB /* yadaUITestsLaunchTests.swift */; };
+		761E08D7E5D042D2901EF209 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273DC4E71FC24415BEB401E5 /* AppCore.swift */; };
+		9396124E4931432A958786B5 /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A7B7B98CE1478897435066 /* HotKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		273DC4E71FC24415BEB401E5 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
+		51A7B7B98CE1478897435066 /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
 		6AD3DACA2F2DF169006DBCBB /* yada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yada.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AD3DACD2F2DF169006DBCBB /* yadaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yadaApp.swift; sourceTree = "<group>"; };
 		6AD3DACF2F2DF169006DBCBB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		273DC4E71FC24415BEB401E5 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		6AD3DAD12F2DF16A006DBCBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AD3DAD42F2DF16A006DBCBB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AD3DAD62F2DF16A006DBCBB /* yada.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yada.entitlements; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				6AD3DACD2F2DF169006DBCBB /* yadaApp.swift */,
 				6AD3DACF2F2DF169006DBCBB /* ContentView.swift */,
 				273DC4E71FC24415BEB401E5 /* AppCore.swift */,
+				51A7B7B98CE1478897435066 /* HotKey.swift */,
 				6AD3DAD12F2DF16A006DBCBB /* Assets.xcassets */,
 				6AD3DAD62F2DF16A006DBCBB /* yada.entitlements */,
 				6AD3DAD32F2DF16A006DBCBB /* Preview Content */,
@@ -265,6 +268,7 @@
 				6AD3DAD02F2DF169006DBCBB /* ContentView.swift in Sources */,
 				6AD3DACE2F2DF169006DBCBB /* yadaApp.swift in Sources */,
 				761E08D7E5D042D2901EF209 /* AppCore.swift in Sources */,
+				9396124E4931432A958786B5 /* HotKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,9 +435,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"yada/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "yada needs microphone access to transcribe your speech.";
 				INFOPLIST_KEY_NSInputMonitoringUsageDescription = "yada needs input monitoring to paste rewritten text.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "yada needs microphone access to transcribe your speech.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -458,9 +463,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"yada/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "yada needs microphone access to transcribe your speech.";
 				INFOPLIST_KEY_NSInputMonitoringUsageDescription = "yada needs input monitoring to paste rewritten text.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "yada needs microphone access to transcribe your speech.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

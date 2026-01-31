@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = AppViewModel()
+    @ObservedObject private var viewModel = AppViewModel.shared
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -73,9 +73,6 @@ struct ContentView: View {
         }
         .padding(20)
         .frame(minWidth: 420)
-        .onAppear {
-            viewModel.load()
-        }
         .alert(item: $viewModel.alert) { item in
             Alert(title: Text(item.title), message: Text(item.message), dismissButton: .default(Text("OK")))
         }
