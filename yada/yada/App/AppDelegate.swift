@@ -1,11 +1,4 @@
-//
-//  yadaApp.swift
-//  yada
-//
-//  Created by Paras Mittal on 2026-01-31.
-//
-
-import SwiftUI
+import AppKit
 import Carbon.HIToolbox
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -20,17 +13,5 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ notification: Notification) {
         HotKeyManager.shared.unregister()
-    }
-}
-
-@main
-struct yadaApp: App {
-    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-        .windowResizability(.contentSize)
     }
 }
