@@ -24,7 +24,7 @@ final class HotKeyManager {
         }, 1, &eventSpec, selfPtr, &eventHandler)
 
         let signature = OSType(0x59414441) // 'YADA'
-        var hotKeyID = EventHotKeyID(signature: signature, id: 1)
+        let hotKeyID = EventHotKeyID(signature: signature, id: 1)
         RegisterEventHotKey(keyCode, modifiers, hotKeyID, GetApplicationEventTarget(), 0, &hotKeyRef)
     }
 
