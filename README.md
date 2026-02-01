@@ -4,7 +4,7 @@ Yet another dictation app for macOS.
 
 yada records audio in memory, transcribes with OpenAI, rewrites for punctuation/casing, and inserts text at the current cursor. It is designed for direct download (not App Store), minimal UI, and clean code.
 
-Demo:
+Demo (click to watch):
 
 
 [![watch the demo](https://files.parasmittal.com/yada-demo-5-thumb.png)](https://files.parasmittal.com/yada-demo-5.mp4)
