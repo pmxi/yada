@@ -19,6 +19,7 @@ DerivedData/
 *.xccheckout
 *.xcscmblueprint
 *.xcodeproj/project.xcworkspace/
+xcuserdata/
 
 # Swift Package
 .swiftpm/
@@ -37,3 +38,9 @@ fastlane/test_output/
 
 # Misc
 *.log
+
+# Vim
+*.swp
+*.swo
+*.swn
+*.swx
