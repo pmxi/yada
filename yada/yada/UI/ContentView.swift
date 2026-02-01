@@ -19,9 +19,6 @@ struct ContentView: View {
                 Text(viewModel.status.displayText)
                     .font(.headline)
                 Spacer()
-                Button("Refresh Mics") {
-                    viewModel.refreshDevices()
-                }
             }
             if !viewModel.statusDetail.isEmpty {
                 Text(viewModel.statusDetail)

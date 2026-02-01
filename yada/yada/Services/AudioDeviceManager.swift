@@ -1,6 +1,47 @@
 import CoreAudio
+import Foundation
 
 struct AudioDeviceManager {
+    private final class DeviceObserver {
+        static let shared = DeviceObserver()
+        private var isRegistered = false
+        private var handler: (() -> Void)?
+        private var listenerBlock: AudioObjectPropertyListenerBlock?
+
+        func start(handler: @escaping () -> Void) {
+            self.handler = handler
+            guard !isRegistered else { return }
+
+            var address = AudioObjectPropertyAddress(
+                mSelector: kAudioHardwarePropertyDevices,
+                mScope: kAudioObjectPropertyScopeGlobal,
+                mElement: kAudioObjectPropertyElementMain
+            )
+            let systemObjectID = AudioObjectID(kAudioObjectSystemObject)
+            let block: AudioObjectPropertyListenerBlock = { [weak self] _, _ in
+                self?.handler?()
+            }
+            listenerBlock = block
+            let status = AudioObjectAddPropertyListenerBlock(systemObjectID, &address, DispatchQueue.main, block)
+            isRegistered = (status == noErr)
+        }
+
+        func stop() {
+            guard isRegistered else { return }
+            guard let block = listenerBlock else { return }
+            var address = AudioObjectPropertyAddress(
+                mSelector: kAudioHardwarePropertyDevices,
+                mScope: kAudioObjectPropertyScopeGlobal,
+                mElement: kAudioObjectPropertyElementMain
+            )
+            let systemObjectID = AudioObjectID(kAudioObjectSystemObject)
+            AudioObjectRemovePropertyListenerBlock(systemObjectID, &address, DispatchQueue.main, block)
+            isRegistered = false
+            handler = nil
+            listenerBlock = nil
+        }
+    }
+
     static func inputDevices() -> [AudioInputDevice] {
         var address = AudioObjectPropertyAddress(
             mSelector: kAudioHardwarePropertyDevices,
@@ -24,6 +65,10 @@ struct AudioDeviceManager {
             devices.append(AudioInputDevice(id: uid, name: name, deviceID: deviceID, uid: uid))
         }
         return devices.sorted { $0.name < $1.name }
+    }
+
+    static func startMonitoringDeviceChanges(_ handler: @escaping () -> Void) {
+        DeviceObserver.shared.start(handler: handler)
     }
 
     static func setDefaultInputDevice(uid: String) -> Bool {

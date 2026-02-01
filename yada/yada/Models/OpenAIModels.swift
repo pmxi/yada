@@ -12,16 +12,30 @@ struct OpenAIErrorResponse: Decodable {
 }
 
 struct ResponsesRequest: Encodable {
+    struct ReasoningOptions: Encodable {
+        let effort: String
+    }
+
     let model: String
     let input: String
     let instructions: String
-    let maxOutputTokens: Int
+    let maxOutputTokens: Int?
+    let reasoning: ReasoningOptions?
 
     enum CodingKeys: String, CodingKey {
         case model
         case input
         case instructions
         case maxOutputTokens = "max_output_tokens"
+        case reasoning
+    }
+
+    init(model: String, input: String, instructions: String, maxOutputTokens: Int? = nil, reasoning: ReasoningOptions? = nil) {
+        self.model = model
+        self.input = input
+        self.instructions = instructions
+        self.maxOutputTokens = maxOutputTokens
+        self.reasoning = reasoning
     }
 }
 

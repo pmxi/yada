@@ -16,8 +16,8 @@ final class AppViewModel: ObservableObject {
     private let keychain = KeychainStore()
     private var settings = SettingsStore()
     private let inserter = TextInserter()
-    private lazy var openAI = OpenAIClient(apiKeyProvider: { [keychain] in
-        keychain.loadApiKey()
+    private lazy var openAI = OpenAIClient(apiKeyProvider: { [weak self] in
+        self?.apiKey
     })
 
     func load() {
@@ -33,6 +33,11 @@ final class AppViewModel: ObservableObject {
         let modifiers = settings.hotKeyModifiers ?? HotKey.default.modifiers
         hotKey = HotKey(keyCode: keyCode, modifiers: modifiers)
         registerHotKey()
+        AudioDeviceManager.startMonitoringDeviceChanges { [weak self] in
+            Task { @MainActor in
+                self?.refreshDevices()
+            }
+        }
     }
 
     func refreshDevices() {
@@ -43,11 +48,15 @@ final class AppViewModel: ObservableObject {
     }
 
     func saveApiKey() {
-        if apiKey.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+        let trimmed = apiKey.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
             keychain.deleteApiKey()
             return
         }
-        keychain.saveApiKey(apiKey)
+        if trimmed != apiKey {
+            apiKey = trimmed
+        }
+        keychain.saveApiKey(trimmed)
     }
 
     func toggleRecording() {
@@ -112,7 +121,8 @@ final class AppViewModel: ObservableObject {
             setError(title: "Audio Error", message: "No audio captured.")
             return
         }
-        guard let storedKey = keychain.loadApiKey(), !storedKey.isEmpty else {
+        let storedKey = apiKey.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !storedKey.isEmpty else {
             setError(title: "API Key", message: "OpenAI API key is missing.")
             return
         }

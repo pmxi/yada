@@ -27,14 +27,10 @@ final class TextInserter {
 
     private func pasteViaClipboard(text: String) -> Bool {
         let pasteboard = NSPasteboard.general
-        let savedItems = pasteboard.pasteboardItems ?? []
+        // TODO: Clipboard restore removed to avoid NSPasteboardItem reuse crash; consider safe restore later.
         pasteboard.clearContents()
         pasteboard.setString(text, forType: .string)
         sendPasteShortcut()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            pasteboard.clearContents()
-            pasteboard.writeObjects(savedItems)
-        }
         return true
     }
 
