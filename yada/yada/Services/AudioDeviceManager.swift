@@ -72,11 +72,11 @@ struct AudioDeviceManager {
             mScope: kAudioObjectPropertyScopeGlobal,
             mElement: kAudioObjectPropertyElementMain
         )
-        var dataSize = UInt32(MemoryLayout<CFString>.size)
-        var name: CFString = "" as CFString
+        var dataSize = UInt32(MemoryLayout<Unmanaged<CFString>?>.size)
+        var name: Unmanaged<CFString>?
         let status = AudioObjectGetPropertyData(deviceID, &address, 0, nil, &dataSize, &name)
-        if status == noErr {
-            let value = name as String
+        if status == noErr, let name {
+            let value = name.takeUnretainedValue() as String
             return value.isEmpty ? nil : value
         }
         return nil
@@ -88,11 +88,11 @@ struct AudioDeviceManager {
             mScope: kAudioObjectPropertyScopeGlobal,
             mElement: kAudioObjectPropertyElementMain
         )
-        var dataSize = UInt32(MemoryLayout<CFString>.size)
-        var uid: CFString = "" as CFString
+        var dataSize = UInt32(MemoryLayout<Unmanaged<CFString>?>.size)
+        var uid: Unmanaged<CFString>?
         let status = AudioObjectGetPropertyData(deviceID, &address, 0, nil, &dataSize, &uid)
-        if status == noErr {
-            let value = uid as String
+        if status == noErr, let uid {
+            let value = uid.takeUnretainedValue() as String
             return value.isEmpty ? nil : value
         }
         return nil
