@@ -4,6 +4,11 @@ Yet another dictation app for macOS.
 
 yada records audio in memory, transcribes with OpenAI, rewrites for punctuation/casing, and inserts text at the current cursor. It is designed for direct download (not App Store), minimal UI, and clean code.
 
+I said: Google DeepMind CEO Demis Hassabis: AI's Next Breakthroughs, AGI Timeline, and Google's AI Glasses Bet
+yada wrote: Google DeepMind CEO Demis Hassabis: AI's Next Breakthroughs, AGI Timeline, and Google's AI Glasses Bet
+Apple Dictation wrote: Google deep mind, CEO deceives AI next breakthrough AGI timeline and Google AI class bet
+
+
 ## Quick start
 - Open `yada/yada.xcodeproj` in Xcode.
 - Build and run the `yada` target.
@@ -26,12 +31,13 @@ yada records audio in memory, transcribes with OpenAI, rewrites for punctuation/
 ## Project layout
 - `yada/`: Xcode project directory.
 - `yada/yada/`: application source.
-- `PLAN.md`: product intent and principles.
-- `TECH_PLAN.md`: implementation plan.
+- `docs/`: documentation.
 
 ## Docs
-- `ARCHITECTURE.md`: module breakdown and data flow.
-- `DEVELOPMENT.md`: build/run notes and configuration.
-- `SECURITY_PRIVACY.md`: data handling and permissions.
-- `TROUBLESHOOTING.md`: common failures and fixes.
-- `DOCS.md`: documentation index.
+- `docs/ARCHITECTURE.md`: module breakdown and data flow.
+- `docs/DEVELOPMENT.md`: build/run notes and configuration.
+- `docs/SECURITY_PRIVACY.md`: data handling and permissions.
+- `docs/TROUBLESHOOTING.md`: common failures and fixes.
+- `docs/DOCS.md`: documentation index.
+- `docs/PLAN.md`: product intent and principles.
+- `docs/TECH_PLAN.md`: implementation plan.

@@ -1,6 +1,6 @@
 # Documentation index
 
-- `README.md`: project overview and quick start.
+- `../README.md`: project overview and quick start.
 - `ARCHITECTURE.md`: module breakdown and pipeline flow.
 - `DEVELOPMENT.md`: build/run/configuration notes.
 - `SECURITY_PRIVACY.md`: data handling and permissions.

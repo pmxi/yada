@@ -28,6 +28,11 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
 - Selected mic and hotkey: UserDefaults keys `selectedInputDeviceUID`, `hotKeyKeyCode`, `hotKeyModifiers`.
 - Default hotkey: Cmd+grave (backtick key). The recorder enforces at least one modifier.
 
+## Debugging
+- Enable full OpenAI request/response logging (DEBUG builds only) by setting `YADA_OPENAI_DEBUG=1`.
+- Logs are written to `~/Library/Logs/yada-debug/` with one request/response pair per call.
+- To include the Authorization header in logs, also set `YADA_OPENAI_DEBUG_AUTH=1`.
+
 ## Local secrets
 - The file `openaikey_SECRET` is a local, untracked scratch file for your own use.
 - The app does not read that file; API key is set via UI and stored in Keychain.
