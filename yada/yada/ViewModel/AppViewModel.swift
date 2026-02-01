@@ -9,6 +9,7 @@ final class AppViewModel: ObservableObject {
     @Published var apiKey: String = ""
     @Published var availableInputDevices: [AudioInputDevice] = []
     @Published var selectedInputDeviceUID: String = ""
+    @Published var hotKey: HotKey = .default
     @Published var alert: AlertItem?
 
     private let audioCapture = AudioCapture()
@@ -27,6 +28,11 @@ final class AppViewModel: ObservableObject {
         } else {
             selectedInputDeviceUID = availableInputDevices.first?.id ?? ""
         }
+
+        let keyCode = settings.hotKeyKeyCode ?? HotKey.default.keyCode
+        let modifiers = settings.hotKeyModifiers ?? HotKey.default.modifiers
+        hotKey = HotKey(keyCode: keyCode, modifiers: modifiers)
+        registerHotKey()
     }
 
     func refreshDevices() {
@@ -60,6 +66,19 @@ final class AppViewModel: ObservableObject {
         settings.selectedInputDeviceUID = uid
         if !AudioDeviceManager.setDefaultInputDevice(uid: uid) {
             alert = AlertItem(title: "Microphone Selection", message: "Unable to set the selected microphone as the system default.")
+        }
+    }
+
+    func updateHotKey(_ newHotKey: HotKey) {
+        hotKey = newHotKey
+        settings.hotKeyKeyCode = newHotKey.keyCode
+        settings.hotKeyModifiers = newHotKey.modifiers
+        registerHotKey()
+    }
+
+    func registerHotKey() {
+        HotKeyManager.shared.register(keyCode: hotKey.keyCode, modifiers: hotKey.modifiers) { [weak self] in
+            self?.toggleRecording()
         }
     }
 

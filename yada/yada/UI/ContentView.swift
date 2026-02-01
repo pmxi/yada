@@ -50,11 +50,21 @@ struct ContentView: View {
                 .pickerStyle(.menu)
             }
 
+            GroupBox("Hotkey") {
+                VStack(alignment: .leading, spacing: 8) {
+                    HotKeyRecorder(hotKey: viewModel.hotKey) { newHotKey in
+                        viewModel.updateHotKey(newHotKey)
+                    }
+                    Text("Global shortcut for start/stop. Requires at least one modifier.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
             HStack {
                 Button(viewModel.status == .recording ? "Stop" : "Start") {
                     viewModel.toggleRecording()
                 }
-                .keyboardShortcut(.space, modifiers: [.command, .shift])
                 .disabled(viewModel.status == .transcribing || viewModel.status == .rewriting || viewModel.status == .inserting)
 
                 Spacer()

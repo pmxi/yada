@@ -10,7 +10,7 @@ final class HotKeyManager {
 
     private init() {}
 
-    func register(commandKey: Bool, shift: Bool, keyCode: UInt32, action: @escaping () -> Void) {
+    func register(keyCode: UInt32, modifiers: UInt32, action: @escaping () -> Void) {
         unregister()
         self.action = action
 
@@ -22,10 +22,6 @@ final class HotKeyManager {
             manager.trigger()
             return noErr
         }, 1, &eventSpec, selfPtr, &eventHandler)
-
-        var modifiers: UInt32 = 0
-        if commandKey { modifiers |= UInt32(cmdKey) }
-        if shift { modifiers |= UInt32(shiftKey) }
 
         let signature = OSType(0x59414441) // 'YADA'
         var hotKeyID = EventHotKeyID(signature: signature, id: 1)

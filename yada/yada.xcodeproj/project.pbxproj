@@ -14,7 +14,10 @@
 		6AD3DAE02F2DF16A006DBCBB /* yadaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3DADF2F2DF16A006DBCBB /* yadaTests.swift */; };
 		6AD3DAEA2F2DF16A006DBCBB /* yadaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3DAE92F2DF16A006DBCBB /* yadaUITests.swift */; };
 		6AD3DAEC2F2DF16A006DBCBB /* yadaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD3DAEB2F2DF16A006DBCBB /* yadaUITestsLaunchTests.swift */; };
-		9396124E4931432A958786B5 /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A7B7B98CE1478897435066 /* HotKey.swift */; };
+		9396124E4931432A958786B5 /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A7B7B98CE1478897435066 /* HotKeyManager.swift */; };
+		A6A12277B8B44EDF955DC11A /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2C8B14E2604F0791A00ED6 /* HotKey.swift */; };
+		802C57DA233741FD8C4A2B83 /* HotKeyRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E49610F7F4B2C8214F309 /* HotKeyRecorder.swift */; };
+		BFDE3F82CE1442B49747B4D7 /* KeyCodeTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7796CF6D6964785A7BA122F /* KeyCodeTranslator.swift */; };
 		3760CA26C6EB48B5954A95FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11CBDB6E9C243E88154C867 /* AppDelegate.swift */; };
 		9E3AE867A040471E8DAFFB93 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241C204EAA94B8994F9B44D /* AppViewModel.swift */; };
 		C2F611E0CFC24C12919BBFCB /* AppStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2902F2DB20A43A9B431B851 /* AppStatus.swift */; };
@@ -63,7 +66,7 @@
 		6AD3DAE52F2DF16A006DBCBB /* yadaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yadaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AD3DAE92F2DF16A006DBCBB /* yadaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yadaUITests.swift; sourceTree = "<group>"; };
 		6AD3DAEB2F2DF16A006DBCBB /* yadaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yadaUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		51A7B7B98CE1478897435066 /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/HotKey.swift; sourceTree = "<group>"; };
+		51A7B7B98CE1478897435066 /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/HotKeyManager.swift; sourceTree = "<group>"; };
 		D11CBDB6E9C243E88154C867 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App/AppDelegate.swift; sourceTree = "<group>"; };
 		A241C204EAA94B8994F9B44D /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel/AppViewModel.swift; sourceTree = "<group>"; };
 		F2902F2DB20A43A9B431B851 /* AppStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/AppStatus.swift; sourceTree = "<group>"; };
@@ -81,6 +84,9 @@
 		3167CAAEFEDC40C191999F16 /* WavEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils/WavEncoder.swift; sourceTree = "<group>"; };
 		36F4ED03B4D04961BA33DD5E /* MultipartFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils/MultipartFormData.swift; sourceTree = "<group>"; };
 		1EE8E963C27245DE8EF78CAB /* Data+Append.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Utils/Data+Append.swift"; sourceTree = "<group>"; };
+		BE2C8B14E2604F0791A00ED6 /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/HotKey.swift; sourceTree = "<group>"; };
+		C12E49610F7F4B2C8214F309 /* HotKeyRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI/HotKeyRecorder.swift; sourceTree = "<group>"; };
+		F7796CF6D6964785A7BA122F /* KeyCodeTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils/KeyCodeTranslator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,7 @@
 				F2902F2DB20A43A9B431B851 /* AppStatus.swift */,
 				342371DE2CEF4052ABFE2E49 /* AlertItem.swift */,
 				1A67FCA51D4C4A4895A90927 /* AudioInputDevice.swift */,
+				BE2C8B14E2604F0791A00ED6 /* HotKey.swift */,
 				E24753B4FB154F68B8C004B0 /* CapturedAudio.swift */,
 				38C1BAB1926B448A84E08EF6 /* OpenAIModels.swift */,
 				7D6DA61A48B2428A8F815AEC /* AudioCapture.swift */,
@@ -147,10 +154,12 @@
 				67E8C0F67F114AC1A1A3CCC0 /* TextInserter.swift */,
 				950779AB889C403986C59C1D /* KeychainStore.swift */,
 				8E78A013EEA944FA89056160 /* SettingsStore.swift */,
-				51A7B7B98CE1478897435066 /* HotKey.swift */,
+				51A7B7B98CE1478897435066 /* HotKeyManager.swift */,
 				3167CAAEFEDC40C191999F16 /* WavEncoder.swift */,
 				36F4ED03B4D04961BA33DD5E /* MultipartFormData.swift */,
+				F7796CF6D6964785A7BA122F /* KeyCodeTranslator.swift */,
 				1EE8E963C27245DE8EF78CAB /* Data+Append.swift */,
+				C12E49610F7F4B2C8214F309 /* HotKeyRecorder.swift */,
 				6AD3DAD12F2DF16A006DBCBB /* Assets.xcassets */,
 				6AD3DAD62F2DF16A006DBCBB /* yada.entitlements */,
 				6AD3DAD32F2DF16A006DBCBB /* Preview Content */,
@@ -315,11 +324,12 @@
 			files = (
 				6AD3DAD02F2DF169006DBCBB /* ContentView.swift in Sources */,
 				6AD3DACE2F2DF169006DBCBB /* yadaApp.swift in Sources */,
-				9396124E4931432A958786B5 /* HotKey.swift in Sources */,
+				9396124E4931432A958786B5 /* HotKeyManager.swift in Sources */,
 				3760CA26C6EB48B5954A95FE /* AppDelegate.swift in Sources */,
 				9E3AE867A040471E8DAFFB93 /* AppViewModel.swift in Sources */,
 				C2F611E0CFC24C12919BBFCB /* AppStatus.swift in Sources */,
 				4AD15D84B72449908ACCC865 /* AudioInputDevice.swift in Sources */,
+				A6A12277B8B44EDF955DC11A /* HotKey.swift in Sources */,
 				62512ED9840E4A5CBB821611 /* AlertItem.swift in Sources */,
 				500B62EEC8A8439D89359311 /* CapturedAudio.swift in Sources */,
 				C4B37E7E19DB4F6CB155A49B /* OpenAIModels.swift in Sources */,
@@ -332,7 +342,9 @@
 				441A43C292D342B9B5A7BA0F /* SettingsStore.swift in Sources */,
 				26154B845673421488357040 /* WavEncoder.swift in Sources */,
 				CBB64746EA4841CD90A0BD0F /* MultipartFormData.swift in Sources */,
+				BFDE3F82CE1442B49747B4D7 /* KeyCodeTranslator.swift in Sources */,
 				75A5B3BE84B04C83A8923462 /* Data+Append.swift in Sources */,
+				802C57DA233741FD8C4A2B83 /* HotKeyRecorder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
