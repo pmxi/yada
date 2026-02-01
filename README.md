@@ -7,7 +7,10 @@ yada records audio in memory, transcribes with OpenAI, rewrites for punctuation/
 Demo (click to watch):
 
 
-[![watch the demo](https://files.parasmittal.com/yada-demo-5-thumb.png)](https://files.parasmittal.com/yada-demo-5.mp4)
+
+https://github.com/user-attachments/assets/f7a67c6e-a14d-4b1e-8ba7-b98a07740561
+
+
 
 ## Install (macOS)
 1. Download the latest `yada-*-mac.zip` from GitHub Releases.
