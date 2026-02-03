@@ -25,13 +25,6 @@ https://github.com/user-attachments/assets/f7a67c6e-a14d-4b1e-8ba7-b98a07740561
 3. Grant **Microphone** and **Accessibility** permissions when prompted.
 4. Press the global hotkey to start/stop dictation (default: Cmd+grave).
 
-## Build from source (developers)
-1. Open `yada/yada.xcodeproj` in Xcode.
-2. Build and run the `yada` target.
-3. Enter your OpenAI API key and click Save.
-4. Grant Microphone and Accessibility permissions when prompted.
-5. Press the global hotkey to start/stop dictation (default: Cmd+grave).
-
 ## Features
 - Global start/stop hotkey (configurable).
 - Mic selection (sets system default input device).
@@ -44,3 +37,5 @@ https://github.com/user-attachments/assets/f7a67c6e-a14d-4b1e-8ba7-b98a07740561
 - Rewrite model: `gpt-5-mini`
 - Hotkey: Cmd+grave (backtick key) with at least one modifier required
 
+## Developer info
+See `docs/DEVELOPMENT.md` for developer intro, build, and run instructions.
