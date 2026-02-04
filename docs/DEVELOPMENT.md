@@ -25,7 +25,11 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
 
 ## Configuration
 - API key storage: Keychain service `dev.yada`, account `openai-api-key`.
-- Selected mic and hotkey: UserDefaults keys `selectedInputDeviceUID`, `hotKeyKeyCode`, `hotKeyModifiers`.
+- UserDefaults keys:
+  - `selectedInputDeviceUID`: selected microphone.
+  - `hotKeyKeyCode`, `hotKeyModifiers`: hotkey binding.
+  - `hotKeyMode`: `"toggle"` or `"hold"` (default: `"toggle"`).
+  - `rewritePrompt`: custom GPT rewrite instructions (default provided if unset).
 - Default hotkey: Cmd+grave (backtick key). The recorder enforces at least one modifier.
 
 ## Debugging

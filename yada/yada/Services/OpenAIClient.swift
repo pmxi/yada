@@ -183,7 +183,7 @@ struct OpenAIClient {
         return decoded.text
     }
 
-    func rewrite(text: String) async throws -> String {
+    func rewrite(text: String, instructions: String) async throws -> String {
         guard let apiKey = apiKeyProvider(), !apiKey.isEmpty else {
             throw ClientError.missingApiKey
         }
@@ -191,7 +191,7 @@ struct OpenAIClient {
         let payload = ResponsesRequest(
             model: "gpt-5-mini",
             input: text,
-            instructions: "Rewrite the text with correct punctuation and capitalization. Preserve meaning. Return plain text only.",
+            instructions: instructions,
             reasoning: .init(effort: "minimal")
         )
 

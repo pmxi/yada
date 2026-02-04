@@ -1,6 +1,18 @@
 import AppKit
 import Carbon.HIToolbox
 
+enum HotKeyMode: String, CaseIterable {
+    case toggle = "toggle"
+    case hold = "hold"
+
+    var displayName: String {
+        switch self {
+        case .toggle: return "Toggle (press to start/stop)"
+        case .hold: return "Hold (hold to record)"
+        }
+    }
+}
+
 struct HotKey: Equatable {
     let keyCode: UInt32
     let modifiers: UInt32

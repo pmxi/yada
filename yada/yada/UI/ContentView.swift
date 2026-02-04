@@ -52,7 +52,32 @@ struct ContentView: View {
                     HotKeyRecorder(hotKey: viewModel.hotKey) { newHotKey in
                         viewModel.updateHotKey(newHotKey)
                     }
+                    Picker("Mode", selection: $viewModel.hotKeyMode) {
+                        ForEach(HotKeyMode.allCases, id: \.self) { mode in
+                            Text(mode.displayName).tag(mode)
+                        }
+                    }
+                    .pickerStyle(.radioGroup)
+                    .onChange(of: viewModel.hotKeyMode) { _, newValue in
+                        viewModel.updateHotKeyMode(newValue)
+                    }
                     Text("Global shortcut for start/stop. Requires at least one modifier.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+            }
+
+            GroupBox("Rewrite Prompt") {
+                VStack(alignment: .leading, spacing: 8) {
+                    TextEditor(text: $viewModel.rewritePrompt)
+                        .font(.system(.body, design: .monospaced))
+                        .frame(minHeight: 60, maxHeight: 100)
+                    HStack {
+                        Button("Save") { viewModel.saveRewritePrompt() }
+                        Button("Reset") { viewModel.resetRewritePrompt() }
+                        Spacer()
+                    }
+                    Text("Instructions for GPT to rewrite transcribed text.")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
                 }

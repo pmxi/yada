@@ -16,7 +16,7 @@
 - `yada/yada/ViewModel/`
   - `AppViewModel.swift`: Orchestrates state machine, pipeline, and UI bindings.
 - `yada/yada/UI/`
-  - `ContentView.swift`: Minimal UI (status, API key, mic picker, hotkey, actions).
+  - `ContentView.swift`: Minimal UI (status, API key, mic picker, hotkey, hotkey mode, rewrite prompt, actions).
   - `HotKeyRecorder.swift`: In-app recorder for configuring hotkey.
 - `yada/yada/Services/`
   - `AudioCapture.swift`: AVAudioEngine capture + format conversion.
@@ -28,7 +28,7 @@
   - `KeychainStore.swift`: API key storage (service `dev.yada`).
   - `SettingsStore.swift`: UserDefaults for hotkey and selected mic.
 - `yada/yada/Models/`
-  - `AppStatus.swift`, `AlertItem.swift`, `CapturedAudio.swift`, `AudioInputDevice.swift`, `HotKey.swift`, `OpenAIModels.swift`.
+  - `AppStatus.swift`, `AlertItem.swift`, `CapturedAudio.swift`, `AudioInputDevice.swift`, `HotKey.swift` (includes `HotKeyMode` enum), `OpenAIModels.swift`.
 - `yada/yada/Utils/`
   - `WavEncoder.swift`, `MultipartFormData.swift`, `Data+Append.swift`, `KeyCodeTranslator.swift`.
 
@@ -48,6 +48,10 @@
 - Default: Cmd+grave (backtick key).
 - Hotkey settings stored in UserDefaults and registered on app launch.
 - HotKey recorder requires at least one modifier to avoid collisions.
+- Two modes available:
+  - **Toggle mode** (default): press to start recording, press again to stop and process.
+  - **Hold mode**: hold to record, release to stop and process.
+- Mode is persisted in UserDefaults and re-registered on change.
 
 ## Audio format
 - Captured at input device native format, converted to:
@@ -58,7 +62,8 @@
 
 ## OpenAI usage
 - Transcription: POST `/v1/audio/transcriptions` with `gpt-4o-transcribe`.
-- Rewrite: POST `/v1/responses` with `gpt-5-mini` and a short instruction.
+- Rewrite: POST `/v1/responses` with `gpt-5-mini` and a configurable instruction prompt.
+- The rewrite prompt can be customized in the UI and is persisted in UserDefaults.
 - Errors are mapped to user-visible alerts.
 
 ## Text insertion

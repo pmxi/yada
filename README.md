@@ -6,11 +6,7 @@ yada records audio in memory, transcribes with OpenAI, rewrites for punctuation/
 
 Demo (click to watch):
 
-
-
 https://github.com/user-attachments/assets/f7a67c6e-a14d-4b1e-8ba7-b98a07740561
-
-
 
 ## Install (macOS)
 1. Download the latest `yada-*-mac.zip` from GitHub Releases.
@@ -26,16 +22,21 @@ https://github.com/user-attachments/assets/f7a67c6e-a14d-4b1e-8ba7-b98a07740561
 4. Press the global hotkey to start/stop dictation (default: Cmd+grave).
 
 ## Features
-- Global start/stop hotkey (configurable).
+- Global hotkey (configurable) with two modes:
+  - **Toggle mode**: press to start, press again to stop (default).
+  - **Hold mode**: hold to record, release to stop.
 - Mic selection (sets system default input device).
 - In-memory audio capture (no audio/text saved to disk).
 - OpenAI transcription + rewrite pipeline.
+- Configurable rewrite prompt for customizing GPT instructions.
 - Accessibility-based insertion with clipboard fallback.
 
 ## Defaults
 - Transcription model: `gpt-4o-transcribe`
 - Rewrite model: `gpt-5-mini`
 - Hotkey: Cmd+grave (backtick key) with at least one modifier required
+- Hotkey mode: Toggle (press to start/stop)
+- Rewrite prompt: "Rewrite the text with correct punctuation and capitalization. Preserve meaning. Return plain text only."
 
 ## Developer info
 See `docs/DEVELOPMENT.md` for developer intro, build, and run instructions.

@@ -19,6 +19,7 @@
 - Ensure the app is running in the foreground or background.
 - Check for conflicts with existing shortcuts in other apps.
 - Rebind the hotkey in the UI to a unique combination.
+- In hold mode, some modifier-heavy hotkeys (e.g., Cmd alone) may behave oddly in certain apps due to Carbon API limitations.
 
 ## Text does not insert
 - Make sure Accessibility permission is granted for `yada`.

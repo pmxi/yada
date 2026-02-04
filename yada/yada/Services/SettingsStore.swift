@@ -4,6 +4,10 @@ struct SettingsStore {
     private let selectedDeviceKey = "selectedInputDeviceUID"
     private let hotKeyCodeKey = "hotKeyKeyCode"
     private let hotKeyModifiersKey = "hotKeyModifiers"
+    private let hotKeyModeKey = "hotKeyMode"
+    private let rewritePromptKey = "rewritePrompt"
+
+    static let defaultRewritePrompt = "Rewrite the text with correct punctuation and capitalization. Preserve meaning. Return plain text only."
 
     var selectedInputDeviceUID: String? {
         get { UserDefaults.standard.string(forKey: selectedDeviceKey) }
@@ -38,6 +42,26 @@ struct SettingsStore {
                 UserDefaults.standard.set(Int(newValue), forKey: hotKeyModifiersKey)
             } else {
                 UserDefaults.standard.removeObject(forKey: hotKeyModifiersKey)
+            }
+        }
+    }
+
+    var hotKeyMode: HotKeyMode {
+        get {
+            guard let raw = UserDefaults.standard.string(forKey: hotKeyModeKey),
+                  let mode = HotKeyMode(rawValue: raw) else { return .toggle }
+            return mode
+        }
+        set { UserDefaults.standard.set(newValue.rawValue, forKey: hotKeyModeKey) }
+    }
+
+    var rewritePrompt: String {
+        get { UserDefaults.standard.string(forKey: rewritePromptKey) ?? Self.defaultRewritePrompt }
+        set {
+            if newValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                UserDefaults.standard.removeObject(forKey: rewritePromptKey)
+            } else {
+                UserDefaults.standard.set(newValue, forKey: rewritePromptKey)
             }
         }
     }

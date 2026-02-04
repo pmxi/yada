@@ -6,22 +6,34 @@ final class HotKeyManager {
 
     private var eventHandler: EventHandlerRef?
     private var hotKeyRef: EventHotKeyRef?
-    private var action: (() -> Void)?
+    private var pressAction: (() -> Void)?
+    private var releaseAction: (() -> Void)?
 
     private init() {}
 
-    func register(keyCode: UInt32, modifiers: UInt32, action: @escaping () -> Void) {
+    func register(keyCode: UInt32, modifiers: UInt32,
+                  onPress: @escaping () -> Void,
+                  onRelease: (() -> Void)? = nil) {
         unregister()
-        self.action = action
+        self.pressAction = onPress
+        self.releaseAction = onRelease
 
-        var eventSpec = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: UInt32(kEventHotKeyPressed))
+        var eventSpecs = [
+            EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: UInt32(kEventHotKeyPressed)),
+            EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: UInt32(kEventHotKeyReleased))
+        ]
         let selfPtr = Unmanaged.passUnretained(self).toOpaque()
-        InstallEventHandler(GetApplicationEventTarget(), { _, _, userData in
-            guard let userData else { return noErr }
+        InstallEventHandler(GetApplicationEventTarget(), { _, event, userData in
+            guard let userData, let event else { return noErr }
             let manager = Unmanaged<HotKeyManager>.fromOpaque(userData).takeUnretainedValue()
-            manager.trigger()
+            let eventKind = Int(GetEventKind(event))
+            if eventKind == kEventHotKeyPressed {
+                manager.triggerPress()
+            } else if eventKind == kEventHotKeyReleased {
+                manager.triggerRelease()
+            }
             return noErr
-        }, 1, &eventSpec, selfPtr, &eventHandler)
+        }, 2, &eventSpecs, selfPtr, &eventHandler)
 
         let signature = OSType(0x59414441) // 'YADA'
         let hotKeyID = EventHotKeyID(signature: signature, id: 1)
@@ -37,13 +49,21 @@ final class HotKeyManager {
             RemoveEventHandler(eventHandler)
             self.eventHandler = nil
         }
-        action = nil
+        pressAction = nil
+        releaseAction = nil
     }
 
-    private func trigger() {
-        guard let action else { return }
+    private func triggerPress() {
+        guard let pressAction else { return }
         Task { @MainActor in
-            action()
+            pressAction()
+        }
+    }
+
+    private func triggerRelease() {
+        guard let releaseAction else { return }
+        Task { @MainActor in
+            releaseAction()
         }
     }
 }

@@ -10,6 +10,8 @@ final class AppViewModel: ObservableObject {
     @Published var availableInputDevices: [AudioInputDevice] = []
     @Published var selectedInputDeviceUID: String = ""
     @Published var hotKey: HotKey = .default
+    @Published var hotKeyMode: HotKeyMode = .toggle
+    @Published var rewritePrompt: String = SettingsStore.defaultRewritePrompt
     @Published var alert: AlertItem?
 
     private let audioCapture = AudioCapture()
@@ -32,6 +34,8 @@ final class AppViewModel: ObservableObject {
         let keyCode = settings.hotKeyKeyCode ?? HotKey.default.keyCode
         let modifiers = settings.hotKeyModifiers ?? HotKey.default.modifiers
         hotKey = HotKey(keyCode: keyCode, modifiers: modifiers)
+        hotKeyMode = settings.hotKeyMode
+        rewritePrompt = settings.rewritePrompt
         registerHotKey()
         AudioDeviceManager.startMonitoringDeviceChanges { [weak self] in
             Task { @MainActor in
@@ -70,6 +74,16 @@ final class AppViewModel: ObservableObject {
         }
     }
 
+    func startRecordingIfIdle() {
+        guard status == .idle || status == .error else { return }
+        Task { await startRecording() }
+    }
+
+    func stopRecordingIfRecording() {
+        guard status == .recording else { return }
+        Task { await stopAndProcess() }
+    }
+
     func selectInputDevice(uid: String) {
         selectedInputDeviceUID = uid
         settings.selectedInputDeviceUID = uid
@@ -85,9 +99,30 @@ final class AppViewModel: ObservableObject {
         registerHotKey()
     }
 
+    func updateHotKeyMode(_ mode: HotKeyMode) {
+        hotKeyMode = mode
+        settings.hotKeyMode = mode
+        registerHotKey()
+    }
+
+    func saveRewritePrompt() {
+        settings.rewritePrompt = rewritePrompt
+    }
+
+    func resetRewritePrompt() {
+        rewritePrompt = SettingsStore.defaultRewritePrompt
+        settings.rewritePrompt = rewritePrompt
+    }
+
     func registerHotKey() {
-        HotKeyManager.shared.register(keyCode: hotKey.keyCode, modifiers: hotKey.modifiers) { [weak self] in
-            self?.toggleRecording()
+        switch hotKeyMode {
+        case .toggle:
+            HotKeyManager.shared.register(keyCode: hotKey.keyCode, modifiers: hotKey.modifiers,
+                                          onPress: { [weak self] in self?.toggleRecording() })
+        case .hold:
+            HotKeyManager.shared.register(keyCode: hotKey.keyCode, modifiers: hotKey.modifiers,
+                                          onPress: { [weak self] in self?.startRecordingIfIdle() },
+                                          onRelease: { [weak self] in self?.stopRecordingIfRecording() })
         }
     }
 
@@ -138,7 +173,7 @@ final class AppViewModel: ObservableObject {
 
             status = .rewriting
             statusDetail = "Rewriting..."
-            let rewritten = try await openAI.rewrite(text: transcript)
+            let rewritten = try await openAI.rewrite(text: transcript, instructions: rewritePrompt)
 
             status = .inserting
             statusDetail = "Inserting..."
