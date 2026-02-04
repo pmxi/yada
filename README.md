@@ -8,6 +8,8 @@ Demo (click to watch):
 
 https://github.com/user-attachments/assets/f7a67c6e-a14d-4b1e-8ba7-b98a07740561
 
+
+
 ## Install (macOS)
 1. Download the latest `yada-*-mac.zip` from [GitHub Releases](https://github.com/pmxi/yada/releases).
 2. Double-click the zip to unzip it.
@@ -20,6 +22,11 @@ https://github.com/user-attachments/assets/f7a67c6e-a14d-4b1e-8ba7-b98a07740561
 2. Enter your OpenAI API key and click **Save**.
 3. Grant **Microphone** and **Accessibility** permissions when prompted.
 4. Press the global hotkey to start/stop dictation (default: Cmd+grave).
+
+## UI
+
+<img width="443" height="597" alt="image" src="https://github.com/user-attachments/assets/be482ef6-7a0c-44fd-a7a8-e7fd398dd760" />
+
 
 ## Features
 - Global hotkey (configurable) with two modes:
