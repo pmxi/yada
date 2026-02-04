@@ -37,6 +37,13 @@ xcodebuild -project yada/yada.xcodeproj -scheme yada -destination 'platform=macO
 - Commit messages are short, imperative summaries (e.g., "Update app behavior and UI").
 - PRs should include a concise description, steps to test, and screenshots for UI changes. Call out permission or privacy-impacting changes explicitly.
 
+## Xcode Project Files
+The `.xcodeproj` bundle contains files that Xcode mutates automatically:
+- `project.pbxproj` — May change when Xcode re-sorts file references or normalizes paths, even without intentional edits.
+- `.xcscheme` files — Change when switching between Debug/Release or modifying scheme settings.
+
+These files mix configuration (which must be versioned) with IDE state (which ideally wouldn't be). This is a known Xcode quirk. **When these files show changes, just commit them without concern.** The diffs are often noisy but harmless.
+
 ## Security & Configuration Tips
 - API keys are stored in Keychain (`dev.yada` / `openai-api-key`); do not log or commit secrets.
 - Debug logging can be enabled with `YADA_OPENAI_DEBUG=1`; logs write to `~/Library/Logs/yada-debug/` (Debug builds only). Use `YADA_OPENAI_DEBUG_AUTH=1` only when absolutely necessary.
