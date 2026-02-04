@@ -10,10 +10,13 @@ struct HotKeyRecorder: View {
     @State private var monitor: Any?
 
     var body: some View {
-        HStack {
+        HStack(spacing: 8) {
             Text(hotKey.displayString)
                 .font(.system(.body, design: .monospaced))
-            Spacer()
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color.primary.opacity(0.06))
+                .cornerRadius(6)
             Button(isRecording ? "Press keys..." : "Change") {
                 if isRecording {
                     stopRecording()

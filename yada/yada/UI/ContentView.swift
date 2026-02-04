@@ -47,23 +47,21 @@ struct ContentView: View {
                 .pickerStyle(.menu)
             }
 
-            GroupBox("Hotkey") {
+            GroupBox("Hotkey to record") {
                 VStack(alignment: .leading, spacing: 8) {
                     HotKeyRecorder(hotKey: viewModel.hotKey) { newHotKey in
                         viewModel.updateHotKey(newHotKey)
                     }
-                    Picker("Mode", selection: $viewModel.hotKeyMode) {
+                    Picker("", selection: $viewModel.hotKeyMode) {
                         ForEach(HotKeyMode.allCases, id: \.self) { mode in
                             Text(mode.displayName).tag(mode)
                         }
                     }
                     .pickerStyle(.radioGroup)
+                    .labelsHidden()
                     .onChange(of: viewModel.hotKeyMode) { _, newValue in
                         viewModel.updateHotKeyMode(newValue)
                     }
-                    Text("Global shortcut for start/stop. Requires at least one modifier.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
                 }
             }
 
