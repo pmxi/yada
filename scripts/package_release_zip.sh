@@ -5,7 +5,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PROJECT_REL="yada/yada.xcodeproj"
 SCHEME="yada"
 CONFIG="Release"
-OUT_DIR="$ROOT_DIR"
+OUT_DIR="$ROOT_DIR/builds"
 NO_BUILD=0
 
 usage() {
@@ -18,7 +18,7 @@ Options:
   -p, --project <path>   Xcode project path (default: yada/yada.xcodeproj)
   -s, --scheme <name>    Scheme name (default: yada)
   -c, --config <name>    Build configuration (default: Release)
-  -o, --out <dir>        Output directory (default: repo root)
+  -o, --out <dir>        Output directory (default: builds/)
   --no-build             Skip the build step (assumes app already built)
   -h, --help             Show this help
 USAGE
@@ -97,6 +97,7 @@ if [[ -z "$VERSION" ]]; then
 fi
 
 ZIP_NAME="yada-v${VERSION}-mac.zip"
+mkdir -p "$OUT_DIR"
 OUT_PATH="$OUT_DIR/$ZIP_NAME"
 
 ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" "$OUT_PATH"

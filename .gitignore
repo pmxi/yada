@@ -39,6 +39,9 @@ fastlane/test_output/
 # Misc
 *.log
 
+# Builds
+builds/
+
 # Vim
 *.swp
 *.swo
