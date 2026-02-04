@@ -27,7 +27,7 @@ Simplicity is of utmost importance.
 This app should have very limited features and UI. Here's what the MVP will implement.
 One page UI with options to configure OpenAI API key, choose microphone input.
 Use gpt-4o-transcribe to transcribe and use gpt-5-mini to rewrite and then paste at cursor location.
-User triggers dictation with CMD+` to start and stop.
+User triggers dictation with Option+Cmd+S to start and stop.
 
 UI should be absolutely minimal.
 code should be well architectured and engineered.

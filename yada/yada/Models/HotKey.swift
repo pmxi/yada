@@ -17,7 +17,7 @@ struct HotKey: Equatable {
     let keyCode: UInt32
     let modifiers: UInt32
 
-    static let `default` = HotKey(keyCode: UInt32(kVK_ANSI_Grave), modifiers: UInt32(cmdKey))
+    static let `default` = HotKey(keyCode: UInt32(kVK_ANSI_S), modifiers: UInt32(optionKey | cmdKey))
 
     var displayString: String {
         modifierSymbols + KeyCodeTranslator.string(for: keyCode)
