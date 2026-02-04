@@ -41,9 +41,6 @@ struct HotKeyRecorder: View {
                 return nil
             }
             let flags = event.modifierFlags.intersection([.command, .option, .control, .shift])
-            if flags.isEmpty {
-                return nil
-            }
             let modifiers = HotKey.carbonModifiers(from: flags)
             let newHotKey = HotKey(keyCode: UInt32(event.keyCode), modifiers: modifiers)
             onChange(newHotKey)

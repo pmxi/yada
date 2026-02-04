@@ -30,7 +30,7 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
   - `hotKeyKeyCode`, `hotKeyModifiers`: hotkey binding.
   - `hotKeyMode`: `"toggle"` or `"hold"` (default: `"toggle"`).
   - `rewritePrompt`: custom GPT rewrite instructions (default provided if unset).
-- Default hotkey: Cmd+grave (backtick key). The recorder enforces at least one modifier.
+- Default hotkey: Cmd+grave (backtick key).
 
 ## Debugging
 - Enable full OpenAI request/response logging (DEBUG builds only) by setting `YADA_OPENAI_DEBUG=1`.
