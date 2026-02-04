@@ -9,7 +9,7 @@ Demo (click to watch):
 https://github.com/user-attachments/assets/f7a67c6e-a14d-4b1e-8ba7-b98a07740561
 
 ## Install (macOS)
-1. Download the latest `yada-*-mac.zip` from GitHub Releases.
+1. Download the latest `yada-*-mac.zip` from [GitHub Releases](https://github.com/pmxi/yada/releases).
 2. Double-click the zip to unzip it.
 3. Drag `yada.app` into your **Applications** folder.
 4. First launch: right-click `yada.app` → **Open** → **Open**.
