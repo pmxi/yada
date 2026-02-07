@@ -47,3 +47,4 @@ builds/
 *.swo
 *.swn
 *.swx
+assets/*.png
