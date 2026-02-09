@@ -12,7 +12,7 @@ The zips are made using scripts/package_release_zip.sh
 research/ contains notes and scripts for research in automated speech recognition to improve yada.
 It's not part of the macOS app development
 docs/ contains valuable info about the project, how to develop, and how to use it. It's a collection of markdown files.
-Technical info should go here. As you work on yada, you will may discover things that are valuable to remember. Document them
+Technical info should go here. As you work on yada, you may discover things that are valuable to remember. Document them
 here.
 The README.md is an intro and quickstart for new (non-technical) users.
 
