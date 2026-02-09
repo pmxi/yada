@@ -16,5 +16,5 @@ Technical info should go here. As you work on yada, you will may discover things
 here.
 The README.md is an intro and quickstart for new (non-technical) users.
 
-If you are working on the yada macOS app, first read docs/macos-contributing.md to learn about common development commands.
+If you are working on the yada macOS app (anything under yada/), first read docs/macos-contributing.md to learn about common development commands.
 
