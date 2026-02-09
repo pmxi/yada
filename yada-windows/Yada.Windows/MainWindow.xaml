@@ -1,0 +1,42 @@
+<Window
+    x:Class="Yada.Windows.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:Yada.Windows.Models"
+    mc:Ignorable="d"
+    Title="yada for Windows">
+
+    <ScrollViewer>
+        <StackPanel Spacing="12" Padding="20" MaxWidth="720">
+            <TextBlock FontSize="28" FontWeight="SemiBold" Text="yada for Windows" />
+            <TextBlock Foreground="DarkGray" Text="Hold or toggle a global hotkey, transcribe with Groq, rewrite, then paste at cursor." TextWrapping="Wrap" />
+
+            <Border Padding="12" BorderThickness="1" BorderBrush="#22000000" CornerRadius="8">
+                <StackPanel Spacing="8">
+                    <TextBlock FontSize="16" FontWeight="SemiBold" Text="Configuration" />
+                    <TextBox Header="Groq API key" Text="{x:Bind ViewModel.ApiKey, Mode=TwoWay}" PlaceholderText="gsk_..." />
+                    <ComboBox Header="Microphone" ItemsSource="{x:Bind ViewModel.InputDevices}" SelectedItem="{x:Bind ViewModel.SelectedInputDevice, Mode=TwoWay}" />
+                    <ComboBox Header="Hotkey mode" ItemsSource="{x:Bind ViewModel.HotKeyModes}" SelectedItem="{x:Bind ViewModel.HotKeyMode, Mode=TwoWay}" />
+                    <TextBlock Foreground="DarkGray" Text="Hotkey: Ctrl+Shift+Space (fixed for MVP)" />
+                    <TextBox Header="Rewrite prompt" Text="{x:Bind ViewModel.RewritePrompt, Mode=TwoWay}" AcceptsReturn="True" Height="90" TextWrapping="Wrap" />
+                    <Button Content="Save Settings" Command="{x:Bind ViewModel.SaveSettingsCommand}" HorizontalAlignment="Left" />
+                </StackPanel>
+            </Border>
+
+            <Border Padding="12" BorderThickness="1" BorderBrush="#22000000" CornerRadius="8">
+                <StackPanel Spacing="8">
+                    <TextBlock FontSize="16" FontWeight="SemiBold" Text="Dictation" />
+                    <TextBlock Text="{x:Bind ViewModel.StatusLabel, Mode=OneWay}" />
+                    <TextBlock Foreground="DarkGray" Text="{x:Bind ViewModel.StatusDetail, Mode=OneWay}" TextWrapping="Wrap" />
+                    <Button Command="{x:Bind ViewModel.ToggleRecordingCommand}">
+                        <Button.Content>
+                            <TextBlock Text="{x:Bind ViewModel.ToggleButtonText, Mode=OneWay}" />
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

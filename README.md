@@ -47,3 +47,4 @@ https://github.com/user-attachments/assets/f7a67c6e-a14d-4b1e-8ba7-b98a07740561
 
 ## Developer info
 See `docs/DEVELOPMENT.md` for developer intro, build, and run instructions.
+Windows scaffold info is in `docs/windows-contributing.md`.
