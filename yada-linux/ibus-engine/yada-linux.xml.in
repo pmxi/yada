@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component>
+  <name>org.freedesktop.IBus.YadaLinux</name>
+  <description>Yada dictation input method (Wayland)</description>
+  <exec>@@EXEC@@</exec>
+  <version>0.1.0</version>
+  <author>yada</author>
+  <license>MIT</license>
+  <homepage>https://github.com/pmxi/yada</homepage>
+
+  <engines>
+    <engine>
+      <name>yada</name>
+      <longname>Yada</longname>
+      <description>Dictation hotkey engine for committing rewritten text</description>
+      <language>en</language>
+      <layout>us</layout>
+      <rank>99</rank>
+    </engine>
+  </engines>
+</component>

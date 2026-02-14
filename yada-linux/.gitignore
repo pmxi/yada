@@ -1,0 +1,17 @@
+# Rust
+target/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Secrets / local dev files
+.oaikey*
+.env
+
+# Editor/OS noise
+*.swp
+*.swo
+*.tmp
+*~
+.DS_Store
